@@ -39,8 +39,8 @@ int main(int argc,char *argv[])
 
     struct sockaddr_in local;
     local.sin_family = AF_INET;
-    local.sin_addr.s_addr = inet_addr(argv[1]);
-    local.sin_port = htons(atoi(argv[2]));
+    local.sin_addr.s_addr = inet_addr(argv[1]);//字符转换为IP地址
+    local.sin_port = htons(atoi(argv[2]));//先将字符串转为数字，然后转换字节序
     
     if(bind(sock,(struct sockaddr*)&local,sizeof(local)) < 0){
         perror("bind");
@@ -57,6 +57,7 @@ int main(int argc,char *argv[])
             continue;
         }
         buf[read_size] = '\0';
+        //将地址转化为字符串输出，
         printf("[%s:%d] %s\n",inet_ntoa(peer_addr.sin_addr),ntohs(peer_addr.sin_port),buf);
 
 
