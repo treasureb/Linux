@@ -47,6 +47,7 @@ int main(int argc,char *argv[])
             perror("accept");
             continue;
         }
+        //服务器会一直在这个循环里，一直到客户端断开连接
         while(1){
             char buf[1024] = {0};
             ssize_t read_size = read(newsock,buf,sizeof(buf)-1);
