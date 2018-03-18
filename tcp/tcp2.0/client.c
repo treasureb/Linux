@@ -14,7 +14,7 @@ int main(int argc,char *argv[])
         return 1;
     }
     
-    int sock = socket(AF_INET,SOCK_DGRAM,0);
+    int sock = socket(AF_INET,SOCK_STREAM,0);
     if(sock < 0){
         perror("socket");
         return 2;
@@ -31,7 +31,6 @@ int main(int argc,char *argv[])
         perror("connetc");
         return 3;
     }
-
     while(1){
         char buf[1024] = {0};
         printf("> ");

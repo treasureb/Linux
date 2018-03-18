@@ -38,6 +38,7 @@ void CreateWork(int newsock)
             write(newsock,buf,strlen(buf));
         }
     }
+    close(newsock);
 }
 
 int main(int argc,char *argv[])
@@ -65,10 +66,8 @@ int main(int argc,char *argv[])
         return 3;
     }
 
-    printf("listen before\n");
     //第二个参数为等待队列的长度
     int ret = listen(sock,10);
-    printf("listen after\n");
     if(ret < 0){
         perror("listen");
         return 4;
@@ -78,6 +77,7 @@ int main(int argc,char *argv[])
         struct sockaddr_in peer_addr;
         socklen_t len = sizeof(peer_addr);
         int newsock = accept(sock,(struct sockaddr*)&peer_addr,&len);
+        printf("接受客户端请求\n");
         if(newsock < 0){
             perror("accept");
             continue;

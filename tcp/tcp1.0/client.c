@@ -14,7 +14,7 @@ int main(int argc,char *argv[])
         return 1;
     }
     
-    int sock = socket(AF_INET,SOCK_DGRAM,0);
+    int sock = socket(AF_INET,SOCK_STREAM,0);
     if(sock < 0){
         perror("socket");
         return 2;
